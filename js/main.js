@@ -8,6 +8,8 @@
   const scoreLabel = document.querySelector('#result > p');
   const answerCheck = document.getElementById('answerCheck');
   const answerExplanation = document.getElementById('answerExplanation');
+  const questionSet = document.getElementById('questionSet');
+
 
 
 const quizSet = shuffle([
@@ -21,8 +23,12 @@ const quizSet = shuffle([
 let currentNum = 0;
 let isAnswered;
 let score = 0;
+let answer = [];
 
 function shuffle(arr) {
+  questionSet.classList.remove('displayNone');
+  console.log(result);
+  result.classList.add('displayNone');
   for(let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[j], arr[i]] = [arr[i], arr[j]]; 
@@ -40,11 +46,13 @@ function checkAnswer(li) {
     li.classList.add('correct');
     answerCheck.textContent = "正解！";
     answerExplanation.textContent = "正解は"　+ quizSet[currentNum].a + "です";
+    answer.push("◯");
     score++;
   } else {
     li.classList.add('wrong');
     answerCheck.textContent = "不正解...";
     answerExplanation.textContent = "正解は"　+ quizSet[currentNum].a + "です";
+    answer.push("×");
   }
 
   btn.classList.remove('disabled');
@@ -60,7 +68,6 @@ function setQuiz() {
   }
 
   const shuffledChoices = shuffle([...quizSet[currentNum].c]);
-  console.log(shuffledChoices);
   for(let n = 0; n < shuffledChoices.length; n++) {
     const li = document.createElement('li');
     li.textContent = shuffledChoices[n];
@@ -69,11 +76,19 @@ function setQuiz() {
     });
     choices.appendChild(li);
   }
-  
+
   if(currentNum === quizSet.length - 1) {
-    btn.textContent = 'Show Score';
+    btn.textContent = 'Check Score';
   }
 }
+
+function finalAnswer() {
+  questionSet.classList.add('displayNone');
+  result.classList.remove('displayNone');
+  let answerCheck;
+  answerCheck = 0;
+}
+
   setQuiz();
 
   btn.addEventListener('click', () => {
@@ -83,8 +98,10 @@ function setQuiz() {
     btn.classList.add('disabled');
 
     if(currentNum === quizSet.length - 1) {
-      scoreLabel.textContent = `Score: ${score} / ${quizSet.length}`;
-      result.classList.remove('hidden');
+      // scoreLabel.textContent = `Score: ${score} / ${quizSet.length}`;
+      // result.classList.remove('hidden');
+      // console.log(answer);
+      finalAnswer();
     } else {
       currentNum++;
       answerCheck.textContent = "";

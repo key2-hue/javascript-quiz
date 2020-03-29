@@ -6,17 +6,20 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <section class="questionSet">
+  <section class="questionSet" id="questionSet">
     <p id="quiz"></p>
     <ul id="option"></ul>
     <div class="answer">
       <p id="answerCheck"></p>
       <p id="answerExplanation"></p>
     </div>
-    <section id="result" class="hidden">
+    <!-- <section id="result" class="hidden">
       <p></p>
       <a href="">Replay?</a>
-    </section>
+    </section> -->
+  </section>
+  <section id="result" class="displayNone">
+    <a href="">Replay?</a>
   </section>
   <div id="btn" class="disabled">Next</div>
   <script src="js/main.js"></script>

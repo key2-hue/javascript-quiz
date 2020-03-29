@@ -93,3 +93,7 @@ body {
 #answerCheck {
   font-size: 18px;
 }
+
+.displayNone {
+  display: none;
+}
