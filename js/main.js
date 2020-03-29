@@ -5,7 +5,6 @@
   const choices = document.getElementById('option');
   const btn = document.getElementById('btn');
   const result = document.getElementById('result');
-  const scoreLabel = document.querySelector('#result > p');
   const answerCheck = document.getElementById('answerCheck');
   const answerExplanation = document.getElementById('answerExplanation');
   const questionSet = document.getElementById('questionSet');
@@ -30,7 +29,6 @@ function shuffle(arr) {
   questionSet.classList.remove('displayNone');
 
   btn.classList.remove('displayNone');
-  // console.log(result);
   result.classList.add('displayNone');
   for(let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -89,16 +87,11 @@ function finalAnswer() {
   questionSet.classList.add('displayNone');
   result.classList.remove('displayNone');
   btn.classList.add('displayNone');
-  console.log(answerResult);
   for(let a = 0; a < answer.length; a++) {
-    console.log(answerResult);
     answerResult += ( a + 1　) + "問目" + answer[a];
   }
-  console.log(answer);
-  // answerResult = "<table border='2'><thead>成績発表</thead>";
   answerResult += `${currentNum + 1}問中${score}問正解` + "<a href=''>Replay?</a>"
   let answerResultFinal = answerResult.substring(9);
-  // console.log(answerResult);
   result.innerHTML = answerResultFinal;
 }
 
@@ -111,9 +104,6 @@ function finalAnswer() {
     btn.classList.add('disabled');
 
     if(currentNum === quizSet.length - 1) {
-      // scoreLabel.textContent = `Score: ${score} / ${quizSet.length}`;
-      // result.classList.remove('hidden');
-      // console.log(answer);
       finalAnswer();
     } else {
       currentNum++;
