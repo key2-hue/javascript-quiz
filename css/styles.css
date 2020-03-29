@@ -54,9 +54,7 @@ body {
   background: tomato;
 }
 
-#result {
-  display: none;
-}
+
 
 #btn, #result > a {
   background: skyblue;
@@ -68,6 +66,12 @@ body {
   margin: 0 auto;
   cursor: pointer;
   box-shadow: 0 4px 0 rgb(116, 179, 204);
+}
+
+#result > a {
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
 }
 
 #btn:hover, #result > a:hover {
