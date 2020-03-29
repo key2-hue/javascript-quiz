@@ -6,6 +6,8 @@
   const btn = document.getElementById('btn');
   const result = document.getElementById('result');
   const scoreLabel = document.querySelector('#result > p');
+  const answerCheck = document.getElementById('answerCheck');
+  const answerExplanation = document.getElementById('answerExplanation');
 
 
 const quizSet = shuffle([
@@ -36,9 +38,13 @@ function checkAnswer(li) {
 
   if(li.textContent === quizSet[currentNum].a) {
     li.classList.add('correct');
+    answerCheck.textContent = "正解！";
+    answerExplanation.textContent = "正解は"　+ quizSet[currentNum].a + "です";
     score++;
   } else {
     li.classList.add('wrong');
+    answerCheck.textContent = "不正解...";
+    answerExplanation.textContent = "正解は"　+ quizSet[currentNum].a + "です";
   }
 
   btn.classList.remove('disabled');
@@ -47,22 +53,23 @@ function checkAnswer(li) {
 function setQuiz() {
   isAnswered = false;
 
-  question.textContent = quizSet[currentNum].q;
+  question.textContent = (currentNum + 1) + "問目: " + quizSet[currentNum].q;
 
   while(choices.firstChild) {
     choices.removeChild(choices.firstChild);
   }
 
   const shuffledChoices = shuffle([...quizSet[currentNum].c]);
-  shuffledChoices.forEach(choice => {
+  console.log(shuffledChoices);
+  for(let n = 0; n < shuffledChoices.length; n++) {
     const li = document.createElement('li');
-    li.textContent = choice;
+    li.textContent = shuffledChoices[n];
     li.addEventListener('click', () => {
       checkAnswer(li);
     });
     choices.appendChild(li);
-  });
-
+  }
+  
   if(currentNum === quizSet.length - 1) {
     btn.textContent = 'Show Score';
   }
@@ -80,6 +87,8 @@ function setQuiz() {
       result.classList.remove('hidden');
     } else {
       currentNum++;
+      answerCheck.textContent = "";
+      answerExplanation.textContent = "";
       setQuiz();
     }
   });
