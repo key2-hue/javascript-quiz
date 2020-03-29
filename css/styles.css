@@ -9,6 +9,7 @@ body {
   margin: 10px auto;
   background: limegreen;
   border-radius: 5px;
+  padding-bottom: 15px;
 }
 
 #quiz {
@@ -79,3 +80,16 @@ body {
   top: 4px;
 }
 
+.answer {
+  background: #fff;
+  width: 400px;
+  margin: 0 auto;
+}
+
+#answerCheck, #answerExplanation {
+  text-align: center;
+}
+
+#answerCheck {
+  font-size: 18px;
+}
